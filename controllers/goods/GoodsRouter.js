@@ -17,7 +17,8 @@ class GoodsRouter {
       .post('/', this.middleware.create, this.controller.create)
       .get('/', this.controller.findAll)
       .get('/:id', this.controller.findById)
-      .put('/:id', this.middleware.update, this.controller.update)
+      .put('/:id', this.middleware.replace, this.controller.replace)
+      .patch('/:id', this.middleware.update, this.controller.update)
       .delete('/:id', this.controller.delete);
   }
 }

@@ -1,11 +1,22 @@
 const Joi = require('joi');
 
-const GoodsSchema = Joi.object({
+const GoodsPostSchema = Joi.object({
   id: Joi.string().allow(''),
-  title: Joi.string().min(1).required(),
-  weight: Joi.string().min(1).required(),
-  description: Joi.string().min(1).required(),
+  title: Joi.string().required(),
+  weight: Joi.string().required(),
+  description: Joi.string().required(),
   category: Joi.string().allow(''),
 });
 
-module.exports = GoodsSchema;
+const GoodsPatchSchema = Joi.object({
+  id: Joi.string().allow(''),
+  title: Joi.string().allow(''),
+  weight: Joi.string().allow(''),
+  description: Joi.string().allow(''),
+  category: Joi.string().allow(''),
+});
+
+module.exports = {
+  GoodsPostSchema,
+  GoodsPatchSchema,
+};

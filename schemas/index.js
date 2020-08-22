@@ -1,5 +1,6 @@
-const GoodsSchema = require('./GoodsSchema');
+const { GoodsPostSchema, GoodsPatchSchema } = require('./GoodsSchema');
 
 module.exports = {
-  GoodsSchema,
+  GoodsPostSchema,
+  GoodsPatchSchema,
 };

@@ -9,6 +9,7 @@ class GoodsController {
     this.findAll = this.findAll.bind(this);
     this.findById = this.findById.bind(this);
     this.create = this.create.bind(this);
+    this.replace = this.replace.bind(this);
     this.update = this.update.bind(this);
     this.delete = this.delete.bind(this);
   }
@@ -16,6 +17,7 @@ class GoodsController {
   findAll(req, res, next) {
     console.log('GoodsController.findAll request');
     const data = { goods: this.service.findAll() };
+
     console.log('GoodsController.findAll response', data);
     res.json(data);
   }
@@ -37,7 +39,22 @@ class GoodsController {
   create(req, res, next) {
     console.log('GoodsController.create request', req.body);
     const data = this.service.create(req.body);
+
     console.log('GoodsController.create response', data);
+    res.json(data);
+  }
+
+  replace(req, res, next) {
+    console.log('GoodsController.replace request', req.params.id, req.body);
+    const data = this.service.replace(req.params.id, req.body);
+
+    if (!data) {
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .json({ error: HttpStatus.getStatusText(HttpStatus.NOT_FOUND) });
+    }
+
+    console.log('GoodsController.update response', data);
     res.json(data);
   }
 

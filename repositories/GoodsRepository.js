@@ -21,7 +21,7 @@ class GoodsRepository {
     return entity;
   }
 
-  update(id, data) {
+  replace(id, data) {
     const i = this.db.findIndex(e => e.id === id);
 
     if (i < 0) {
@@ -29,6 +29,19 @@ class GoodsRepository {
     }
 
     const entity = new GoodsEntity({ ...data, id: this.db[i].id });
+    this.db[i] = entity;
+
+    return entity;
+  }
+
+  update(id, data) {
+    const i = this.db.findIndex(e => e.id === id);
+
+    if (i < 0) {
+      return null;
+    }
+
+    const entity = new GoodsEntity({ ...this.db[i], ...data, id: this.db[i].id });
     this.db[i] = entity;
 
     return entity;
