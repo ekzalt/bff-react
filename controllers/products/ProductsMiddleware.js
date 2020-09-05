@@ -1,8 +1,8 @@
 const HttpStatus = require('http-status-codes');
 
-const { GoodsPostSchema, GoodsPatchSchema } = require('../../schemas');
+const { ProductPostSchema, ProductsPatchSchema } = require('../../schemas');
 
-class GoodsMiddleware {
+class ProductsMiddleware {
   constructor() {
     this.create = this.create.bind(this);
     this.replace = this.replace.bind(this);
@@ -16,8 +16,8 @@ class GoodsMiddleware {
    * @returns {void}
    */
   create(req, res, next) {
-    console.log('GoodsMiddleware.create request', req.body);
-    const { error } = GoodsPostSchema.validate(req.body);
+    console.log('ProductsMiddleware.create request', req.body);
+    const { error } = ProductPostSchema.validate(req.body);
 
     if (error) {
       return next({
@@ -36,8 +36,8 @@ class GoodsMiddleware {
    * @returns {void}
    */
   replace(req, res, next) {
-    console.log('GoodsMiddleware.replace request', req.params.id, req.body);
-    const { error } = GoodsPostSchema.validate(req.body);
+    console.log('ProductsMiddleware.replace request', req.params.id, req.body);
+    const { error } = ProductPostSchema.validate(req.body);
 
     if (error) {
       return next({
@@ -62,8 +62,8 @@ class GoodsMiddleware {
    * @returns {void}
    */
   update(req, res, next) {
-    console.log('GoodsMiddleware.update request', req.params.id, req.body);
-    const { error } = GoodsPatchSchema.validate(req.body);
+    console.log('ProductsMiddleware.update request', req.params.id, req.body);
+    const { error } = ProductsPatchSchema.validate(req.body);
 
     if (error) {
       return next({
@@ -82,4 +82,4 @@ class GoodsMiddleware {
   }
 }
 
-module.exports = GoodsMiddleware;
+module.exports = ProductsMiddleware;

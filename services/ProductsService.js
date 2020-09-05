@@ -1,8 +1,8 @@
-const { GoodsEntity } = require('../entities');
-const { GoodsRepository } = require('../repositories');
+const { ProductsEntity } = require('../entities');
+const { ProductsRepository } = require('../repositories');
 
-class GoodsService {
-  constructor(repository = new GoodsRepository()) {
+class ProductsService {
+  constructor(repository = new ProductsRepository()) {
     this.repository = repository;
   }
 
@@ -18,7 +18,7 @@ class GoodsService {
   }
 
   /**
-   * @param {GoodsEntity} data
+   * @param {ProductsEntity} data
    */
   create(data) {
     return this.repository.create(data);
@@ -26,7 +26,7 @@ class GoodsService {
 
   /**
    * @param {string} id
-   * @param {GoodsEntity} data
+   * @param {ProductsEntity} data
    */
   replace(id, data) {
     return this.repository.replace(id, data);
@@ -34,7 +34,7 @@ class GoodsService {
 
   /**
    * @param {string} id
-   * @param {GoodsEntity} data
+   * @param {ProductsEntity} data
    */
   update(id, data) {
     return this.repository.update(id, data);
@@ -48,4 +48,4 @@ class GoodsService {
   }
 }
 
-module.exports = GoodsService;
+module.exports = ProductsService;

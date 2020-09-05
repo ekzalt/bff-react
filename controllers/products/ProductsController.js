@@ -1,9 +1,9 @@
 const HttpStatus = require('http-status-codes');
 
-const { GoodsService } = require('../../services');
+const { ProductsService } = require('../../services');
 
-class GoodsController {
-  constructor(service = new GoodsService()) {
+class ProductsController {
+  constructor(service = new ProductsService()) {
     this.service = service;
 
     this.findAll = this.findAll.bind(this);
@@ -21,10 +21,10 @@ class GoodsController {
    * @returns {void}
    */
   findAll(req, res, next) {
-    console.log('GoodsController.findAll request');
-    const data = { goods: this.service.findAll() };
+    console.log('ProductsController.findAll request');
+    const data = { products: this.service.findAll() };
 
-    console.log('GoodsController.findAll response', data);
+    console.log('ProductsController.findAll response', data);
     res.json(data);
   }
 
@@ -35,7 +35,7 @@ class GoodsController {
    * @returns {void}
    */
   findById(req, res, next) {
-    console.log('GoodsController.findById request', req.params.id);
+    console.log('ProductsController.findById request', req.params.id);
     const data = this.service.findById(req.params.id);
 
     if (!data) {
@@ -44,7 +44,7 @@ class GoodsController {
         .json({ error: HttpStatus.getStatusText(HttpStatus.NOT_FOUND) });
     }
 
-    console.log('GoodsController.findById response', data);
+    console.log('ProductsController.findById response', data);
     res.json(data);
   }
 
@@ -55,10 +55,10 @@ class GoodsController {
    * @returns {void}
    */
   create(req, res, next) {
-    console.log('GoodsController.create request', req.body);
+    console.log('ProductsController.create request', req.body);
     const data = this.service.create(req.body);
 
-    console.log('GoodsController.create response', data);
+    console.log('ProductsController.create response', data);
     res.json(data);
   }
 
@@ -69,7 +69,7 @@ class GoodsController {
    * @returns {void}
    */
   replace(req, res, next) {
-    console.log('GoodsController.replace request', req.params.id, req.body);
+    console.log('ProductsController.replace request', req.params.id, req.body);
     const data = this.service.replace(req.params.id, req.body);
 
     if (!data) {
@@ -78,7 +78,7 @@ class GoodsController {
         .json({ error: HttpStatus.getStatusText(HttpStatus.NOT_FOUND) });
     }
 
-    console.log('GoodsController.update response', data);
+    console.log('ProductsController.update response', data);
     res.json(data);
   }
 
@@ -89,7 +89,7 @@ class GoodsController {
    * @returns {void}
    */
   update(req, res, next) {
-    console.log('GoodsController.update request', req.params.id, req.body);
+    console.log('ProductsController.update request', req.params.id, req.body);
     const data = this.service.update(req.params.id, req.body);
 
     if (!data) {
@@ -98,7 +98,7 @@ class GoodsController {
         .json({ error: HttpStatus.getStatusText(HttpStatus.NOT_FOUND) });
     }
 
-    console.log('GoodsController.update response', data);
+    console.log('ProductsController.update response', data);
     res.json(data);
   }
 
@@ -109,7 +109,7 @@ class GoodsController {
    * @returns {void}
    */
   delete(req, res, next) {
-    console.log('GoodsController.delete request', req.params.id);
+    console.log('ProductsController.delete request', req.params.id);
     const data = this.service.delete(req.params.id);
 
     if (!data) {
@@ -118,9 +118,9 @@ class GoodsController {
         .json({ error: HttpStatus.getStatusText(HttpStatus.NOT_FOUND) });
     }
 
-    console.log('GoodsController.delete response', data);
+    console.log('ProductsController.delete response', data);
     res.json(data);
   }
 }
 
-module.exports = GoodsController;
+module.exports = ProductsController;

@@ -8,7 +8,7 @@ const cors = require('cors');
 const { homeRouter } = require('./controllers');
 const ioc = require('./ioc');
 
-const { goodsRouter } = ioc();
+const { goodsRouter, productsRouter } = ioc();
 const app = express();
 
 app.use(logger('dev'));
@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // custom routes
 app.use('/', homeRouter);
 app.use('/goods', goodsRouter);
+app.use('/products', productsRouter);
 
 // 404
 app.use('*', (req, res, next) => {

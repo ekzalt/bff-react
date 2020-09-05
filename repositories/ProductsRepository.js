@@ -1,8 +1,8 @@
-const { GoodsEntity } = require('../entities');
-const GoodsDatabase = require('./GoodsDatabase');
+const { ProductsEntity } = require('../entities');
+const ProductsDatabase = require('./ProductsDatabase');
 
-class GoodsRepository {
-  constructor(db = GoodsDatabase) {
+class ProductsRepository {
+  constructor(db = ProductsDatabase) {
     this.db = db;
   }
 
@@ -18,10 +18,10 @@ class GoodsRepository {
   }
 
   /**
-   * @param {GoodsEntity} data
+   * @param {ProductsEntity} data
    */
   create(data) {
-    const entity = GoodsEntity.create(data);
+    const entity = ProductsEntity.create(data);
     this.db.push(entity);
 
     return entity;
@@ -29,7 +29,7 @@ class GoodsRepository {
 
   /**
    * @param {string} id
-   * @param {GoodsEntity} data
+   * @param {ProductsEntity} data
    */
   replace(id, data) {
     const i = this.db.findIndex(e => e.id === id);
@@ -38,7 +38,7 @@ class GoodsRepository {
       return null;
     }
 
-    const entity = new GoodsEntity({ ...data, id: this.db[i].id });
+    const entity = new ProductsEntity({ ...data, id: this.db[i].id });
     this.db[i] = entity;
 
     return entity;
@@ -46,7 +46,7 @@ class GoodsRepository {
 
   /**
    * @param {string} id
-   * @param {GoodsEntity} data
+   * @param {ProductsEntity} data
    */
   update(id, data) {
     const i = this.db.findIndex(e => e.id === id);
@@ -55,7 +55,7 @@ class GoodsRepository {
       return null;
     }
 
-    const entity = new GoodsEntity({ ...this.db[i], ...data, id: this.db[i].id });
+    const entity = new ProductsEntity({ ...this.db[i], ...data, id: this.db[i].id });
     this.db[i] = entity;
 
     return entity;
@@ -78,4 +78,4 @@ class GoodsRepository {
   }
 }
 
-module.exports = GoodsRepository;
+module.exports = ProductsRepository;
